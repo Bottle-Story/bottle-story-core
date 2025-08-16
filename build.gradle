@@ -1,0 +1,88 @@
+plugins {
+	id 'java-library'
+	id 'maven-publish'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+group = 'com.kyj.fmk'
+version = "0.0.1-SNAPSHOT"
+
+java {
+	withSourcesJar()
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.boot:spring-boot-dependencies:3.5.3"
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			url = uri("http://192.168.56.1:9090/repository/bottle-story/")
+			credentials {
+				username = "admin"
+				password = "1234"
+			}
+			allowInsecureProtocol = true
+		}
+	}
+}
+dependencies {
+		//s3
+	    api 'software.amazon.awssdk:s3:2.27.2'
+		api 'software.amazon.awssdk:url-connection-client:2.27.2'
+		//카프카
+	    api 'org.springframework.kafka:spring-kafka'
+		//스프링 프로브
+		api 'org.springframework.boot:spring-boot-starter-actuator'
+		//프로메테우스 메트릭 노출
+		api 'io.micrometer:micrometer-registry-prometheus'
+		//마이바티스
+	    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+		api 'org.springframework.boot:spring-boot-starter-web'
+		api 'org.springframework.boot:spring-boot-starter-security'
+		api 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+		api 'org.springframework.boot:spring-boot-starter-mail'
+		api 'org.springframework.boot:spring-boot-starter-aop'
+		api 'org.springframework.boot:spring-boot-starter-jdbc'
+		api 'org.springframework.boot:spring-boot-starter-validation'
+
+		api 'org.springframework.boot:spring-boot-starter-data-redis'  // Lettuce 포함, 버전 관리됨
+
+		api 'io.jsonwebtoken:jjwt-api:0.12.3'
+		api 'io.jsonwebtoken:jjwt-impl:0.12.3'
+		api 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+		api 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+
+		api 'com.mysql:mysql-connector-j'
+
+		api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+		api 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+		api'org.reflections:reflections:0.10.2'
+
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'org.springframework.security:spring-security-test'
+		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+
+
+}
+
