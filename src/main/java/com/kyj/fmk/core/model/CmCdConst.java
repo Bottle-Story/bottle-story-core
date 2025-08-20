@@ -6,17 +6,17 @@ package com.kyj.fmk.core.model;
  */
 public class CmCdConst {
 
-    //커뮤니케이션톤 코드
-    public static final String CMC_TONE_CD="CMC_TONE_CD";
-    //회의스타일 코드
-    public static final String MT_STY_CD="MT_STY_CD";
-    //모집상태코드
-    public static final String RECRUIT_ST_CD="RECRUIT_ST_CD";
-    //팀스타일코드
-    public static final String TEAM_STY_CD="TEAM_STY_CD";
-    //그룹상태코드
-    public static final String GRP_ST_CD="GRP_ST_CD";
-    //지원상태코드
-    public static final String APY_ST_CD="APY_ST_CD";
+
+    public static final String BTL_STATUS_CODE="BTL_STATUS_CODE";
+
+    public static final String EVENT_STATUS_CODE="EVENT_STATUS_CODE";
+
+    public static final String OCEAN_CODE="OCEAN_CODE";
+
+    public static final String PARTICLE_CODE="PARTICLE_CODE";
+
+    public static final String SKY_CODE="SKY_CODE";
+
+    public static final String TIME_CODE="TIME_CODE";
 
 }
