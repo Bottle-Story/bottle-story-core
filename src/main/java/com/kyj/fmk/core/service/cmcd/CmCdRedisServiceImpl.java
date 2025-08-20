@@ -63,11 +63,12 @@ public class CmCdRedisServiceImpl implements CmCdRedisService {
         } else if (reqCommonCdDTO.getCmCd().equals(CmCdConst.PARTICLE_CODE)) {
             grpStCdMap = hashOps.entries(RedisKey.CM_PARTICLE_CODE);
 
+        } else if (reqCommonCdDTO.getCmCd().equals(CmCdConst.TIME_CODE)) {
+            grpStCdMap = hashOps.entries(RedisKey.CM_TIME_CODE);
 
-            return grpStCdMap;
         }
 
-        return null;
+        return grpStCdMap;
 
     }
 
