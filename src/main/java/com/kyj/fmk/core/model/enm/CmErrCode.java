@@ -29,6 +29,7 @@ public enum CmErrCode implements ErrCode {
     CM014("CM014","응답메시지가 존재하지 않습니다."),
     CM015("CM015","조회할 내용이 없습니다."),
     CM016("CM016","JSON 직렬/역직렬화에서 오류가 발생하였습니다."),
+    CM017("CM017","기상청 API호출에 실패 하였습니다."),
 
 
 
