@@ -3,6 +3,7 @@ package com.kyj.fmk.core.service.eai;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kyj.fmk.core.exception.custom.KyjBizException;
 import com.kyj.fmk.core.exception.custom.KyjSysException;
 import com.kyj.fmk.core.model.enm.CmErrCode;
 import com.kyj.fmk.core.model.wheather.KmaEntity;
@@ -37,7 +38,12 @@ public class WheatherApiServiceImpl implements WheatherApiService{
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate = new RestTemplate();
     @Override
-    public List<ResWheatherApiDTO> loadWheather(ReqWheatherApiDTO reqWheatherApiDTO) throws JsonProcessingException {
+    public List<ResWheatherApiDTO> loadWheather(ReqWheatherApiDTO reqWheatherApiDTO)  {
+
+        if(reqWheatherApiDTO.getLat() == null || reqWheatherApiDTO.getLot()==null){
+            throw new KyjBizException(CmErrCode.CM018);
+        }
+
         //오늘날짜+시간
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
 
@@ -65,7 +71,10 @@ public class WheatherApiServiceImpl implements WheatherApiService{
 
         String nx = kmaEntity.getNx();
         String ny = kmaEntity.getNy();
-
+        System.out.println("ny = " + ny);
+        System.out.println("nx = " + nx);
+        System.out.println("baseTime = " + baseTime);
+        System.out.println("baseDate = " + baseDate);
         // URL (ServiceKey는 URL 인코딩된 값 사용!)
         String serviceKey = "0BqSd/droJ7OAIRlCoc69gIbhE5vRgueUJwCito7CKsh7vse8h1Uwsbx52iMrueAtaRiCevYA/EwUZIXDcnSig==";
         String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
@@ -80,7 +89,12 @@ public class WheatherApiServiceImpl implements WheatherApiService{
         String json = response.getBody();
 
         // 5️⃣ JSON 파싱
-        JsonNode root = objectMapper.readTree(json);
+        JsonNode root = null;
+        try {
+            root = objectMapper.readTree(json);
+        } catch (JsonProcessingException e) {
+            throw new KyjSysException(CmErrCode.CM016);
+        }
         String resultCode = root.path("response").path("header").path("resultCode").asText();
         if (!"00".equals(resultCode)) {
             throw new KyjSysException(CmErrCode.CM017);
