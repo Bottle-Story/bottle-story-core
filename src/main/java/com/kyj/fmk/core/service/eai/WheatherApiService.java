@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface WheatherApiService {
 
-    public List<ResWheatherApiDTO> loadWheather(ReqWheatherApiDTO reqWheatherApiDTO) throws JsonProcessingException;
+    public List<ResWheatherApiDTO> loadWheather(ReqWheatherApiDTO reqWheatherApiDTO);
 }
