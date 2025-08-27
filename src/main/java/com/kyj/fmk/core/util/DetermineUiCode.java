@@ -1,6 +1,7 @@
 package com.kyj.fmk.core.util;
 
 import com.kyj.fmk.core.model.TimeConst;
+import com.kyj.fmk.core.model.wheather.ReqDetermineUiCode;
 import com.kyj.fmk.core.model.wheather.ResSunRiseSetApiDTO;
 import com.kyj.fmk.core.model.wheather.WhtrData;
 import com.kyj.fmk.core.model.wheather.WhtrUiCode;
@@ -18,12 +19,11 @@ public class DetermineUiCode {
 
     /**
      * UI컴포넌트 결정
-     * @param whtrData
-     * @param resSunRiseSetApiDTO
+     * @param reqDetermineUiCode
      * @return
      */
-    public static WhtrUiCode determineUiCode(WhtrData whtrData, ResSunRiseSetApiDTO resSunRiseSetApiDTO){
-        String timeCode = DetermineTimeCode.determineTimeCode(resSunRiseSetApiDTO);
+    public static WhtrUiCode determineUiCode(ReqDetermineUiCode reqDetermineUiCode){
+        String timeCode = DetermineTimeCode.determineTimeCode(reqDetermineUiCode);
 
         WhtrUiCode whtrUiCode = new WhtrUiCode();
 
@@ -34,7 +34,7 @@ public class DetermineUiCode {
         switch (timeCode){
             case TimeConst.PRE_DAWN:
                 oceanCode = "DAWN_OCEAN";//바다코드
-                    switch (whtrData.getSky()){
+                    switch (reqDetermineUiCode.getWhtrData().getSky()){
                         //하늘코드
                         case 1: skyCode = "DAWN_MOON_CLEAR";
                             break; //맑음
@@ -46,7 +46,7 @@ public class DetermineUiCode {
                 break;
             case TimeConst.SUN_RISE:
                 oceanCode = "SUN_RISE_SET_OCEAN";
-                    switch (whtrData.getSky()){
+                    switch (reqDetermineUiCode.getWhtrData().getSky()){
                         //하늘코드
                         case 1: skyCode = "SUNRISE_PROGRESS_CLEAR";
                             break; //맑음
@@ -58,7 +58,7 @@ public class DetermineUiCode {
                 break;
             case TimeConst.DAY_TIME:
                 oceanCode = "DAY_OCEAN";
-                    switch (whtrData.getSky()){
+                    switch (reqDetermineUiCode.getWhtrData().getSky()){
                         //하늘코드
                         case 1: skyCode = "DAY_CLEAR";
                             break; //맑음
@@ -70,7 +70,7 @@ public class DetermineUiCode {
                 break;
             case TimeConst.SUN_SET:
                 oceanCode = "SUN_RISE_SET_OCEAN";
-                    switch (whtrData.getSky()){
+                    switch (reqDetermineUiCode.getWhtrData().getSky()){
                         //하늘코드
                         case 1: skyCode = "SUNSET_CLEAR";
                             break; //맑음
@@ -82,7 +82,7 @@ public class DetermineUiCode {
                 break;
             case TimeConst.NIGHT:
                 oceanCode = "NIGHT_OCEAN";
-                    switch (whtrData.getSky()){
+                    switch (reqDetermineUiCode.getWhtrData().getSky()){
                         //하늘코드
                         case 1: skyCode = "NIGHT_MOON_CLEAR";
                             break; //맑음
@@ -96,7 +96,7 @@ public class DetermineUiCode {
 
 
 
-        switch (whtrData.getPty()){
+        switch (reqDetermineUiCode.getWhtrData().getPty()){
             //하늘코드
             case 0: particleCode = "PARTICLE_NONE";
                 break; //없음
