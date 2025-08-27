@@ -3,6 +3,10 @@ package com.kyj.fmk.core.model.wheather;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 
 /**
  * 2025-08-25
@@ -13,8 +17,10 @@ import lombok.Setter;
 @Setter
 public class ResWheatherApiDTO {
 
-    private  String fcstDate;
-    private  String fcstTime;
-    private  WthData wthData;
-
+    private LocalTime wthrBaseTime; //발표시간
+    private LocalDate wthrBaseDate; //발표연월일
+    private LocalTime wthrTime; //기준 시간
+    private LocalDate wthrDate; //기준연월일
+    private WhtrData wthData; //날씨데이터
+    private LocalDateTime regDateTime; //등록연월일 시간
 }

@@ -2,6 +2,7 @@ package com.kyj.fmk.core.service.eai;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kyj.fmk.core.model.wheather.ReqWheatherApiDTO;
+import com.kyj.fmk.core.model.wheather.ResSunRiseSetApiDTO;
 import com.kyj.fmk.core.model.wheather.ResWheatherApiDTO;
 
 import java.util.List;
@@ -14,4 +15,6 @@ import java.util.List;
 public interface WheatherApiService {
 
     public List<ResWheatherApiDTO> loadWheather(ReqWheatherApiDTO reqWheatherApiDTO);
+    public ResSunRiseSetApiDTO loadSunRiseSet(ReqWheatherApiDTO reqWheatherApiDTO);
+
 }
