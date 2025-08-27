@@ -9,11 +9,15 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class WthData {
+public class WhtrData {
 
     private int sky;
     private int pty;
     private int lgt;
     private int wsd;
+    private String skyNm;
+    private String ptyNm;
+    private String lgtNm;
+    private String wsdNm;
     private String t1h;
 }
