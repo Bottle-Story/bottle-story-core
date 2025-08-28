@@ -6,6 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -18,12 +19,16 @@ import java.util.concurrent.Executor;
  *  */
 @Aspect
 @Component
-@RequiredArgsConstructor
 public class AsyncInvokeAspect {
 
     private final Executor executor;
     private final AsyncHandleErr asyncHandleErr;
 
+    public AsyncInvokeAspect(@Qualifier("getAsyncExecutor") Executor executor,
+                             AsyncHandleErr asyncHandleErr) {
+        this.executor = executor;
+        this.asyncHandleErr = asyncHandleErr;
+    }
     /**
      * 리턴값이 null인 메소드
      * @param joinPoint
