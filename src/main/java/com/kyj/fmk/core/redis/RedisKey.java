@@ -35,6 +35,7 @@ public class RedisKey {
     //웹소켓 세션관리
     public static final String WS_SESSION_Z_SET_KEY = "WS_SESSIONS";
 
+    public static final String GEO_MEMBER = "GEO:MEMBER";
 
 //-----------------------------------------suffix -----------------------------------------------------------------------------------
 
