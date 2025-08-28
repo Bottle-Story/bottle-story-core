@@ -33,7 +33,7 @@ public class RedisKey {
     public static final String  CM_TIME_CODE="CM_TIME_CODE";
 
     //웹소켓 세션관리
-    private static final String WS_SESSION_Z_SET_KEY = "WS_SESSIONS";
+    public static final String WS_SESSION_Z_SET_KEY = "WS_SESSIONS";
 
 
 //-----------------------------------------suffix -----------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class RedisKey {
 
     //-------------------------------------expire----------------------------------------------------------------------//
 
-    private static final long WS_SESSION_EXPIRE_MS = 5 * 60 * 1000; //5분
+    public static final long WS_SESSION_EXPIRE_MS = 5 * 60 * 1000; //5분
 
 
 }
