@@ -13,7 +13,7 @@ public class KafkaTopic {
     // 날씨 정량평가 및 상태코드 산출
     public static final String WHEATHER_BGM_WHEATHER_UPDATE = "wheather-bgm.wheather-update";
     //웹소켓 연결 시
-    public static final String REALTIME_WEBSOCKET_CONNECT = "realtime.websocket-connect";
+    public static final String REALTIME_MEMBER_LOCATION = "realtime.websocket-connect";
     //로그아웃 시
     public static final String MEMBER_LOGOUT = "member.logout";
     // 유리병 서비스 - > 유리병 흐름
