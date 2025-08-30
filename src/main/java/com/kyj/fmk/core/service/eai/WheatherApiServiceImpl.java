@@ -52,23 +52,21 @@ public class WheatherApiServiceImpl implements WheatherApiService {
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
         LocalDateTime exchangeNow = now;
 
-        // 날짜
-        String baseDate = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        // 시간 계산
-        int hour = now.getHour();
-        int minute = now.getMinute();
-
         // baseTime 계산
+        LocalDateTime baseDateTime;
         String baseTime;
-        if (minute < 30) {
+        if (now.getMinute() < 30) {
             // 0~29분 → 이전 시각의 30분
-            now = now.minusHours(1);
-            baseTime = String.format("%02d30", now.getHour());
+            baseDateTime = now.minusHours(1);
+            baseTime = String.format("%02d30", baseDateTime.getHour());
         } else {
             // 30~59분 → 현재 시각의 30분
-            baseTime = String.format("%02d30", hour);
+            baseDateTime = now;
+            baseTime = String.format("%02d30", baseDateTime.getHour());
         }
-        LocalTime time = LocalTime.parse(baseTime, DateTimeFormatter.ofPattern("HHmm"));
+
+        // baseDate 계산 (baseTime 기준 날짜)
+        String baseDate = baseDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
 
         // (KMA 격자 정수)
