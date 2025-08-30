@@ -52,7 +52,6 @@ public class WheatherApiServiceImpl implements WheatherApiService {
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
         LocalDateTime exchangeNow = now;
 
-        // baseTime 계산
         LocalDateTime baseDateTime;
         String baseTime;
         if (now.getMinute() < 30) {
@@ -65,7 +64,7 @@ public class WheatherApiServiceImpl implements WheatherApiService {
             baseTime = String.format("%02d30", baseDateTime.getHour());
         }
 
-        // baseDate 계산 (baseTime 기준 날짜)
+// baseDate 계산 (baseTime 기준 날짜)
         String baseDate = baseDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
 
