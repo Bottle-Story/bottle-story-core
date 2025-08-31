@@ -37,6 +37,8 @@ public class RedisKey {
 
     public static final String GEO_MEMBER = "GEO:MEMBER";
 
+    public static final String GEO_BOTTLE = "GEO:BOTTLE";
+
 //-----------------------------------------suffix -----------------------------------------------------------------------------------
 
 
